@@ -86,10 +86,72 @@ dfb1=df.copy()
 dfb
 ~~~
 <img width="750" height="411" alt="e3-8" src="https://github.com/user-attachments/assets/adfddda9-5f4b-41b4-8192-afb12861769e" />
+```
+from category_encoders import TargetEncoder
+te=TargetEncoder()
+CC=df.copy()
+new=te.fit_transform(X=CC["City"],y=CC["Target"])
+CC=pd.concat([CC,new],axis=1)
+CC
+```
+<img width="750" height="411" alt="e3-9" src="https://github.com/user-attachments/assets/d4aadd8c-4117-4100-9fa0-1e525e735e3c" />
+```
+import pandas as pd
+from scipy import stats
+import numpy as np
+df=pd.read_csv("/content/Data_to_Transform.csv")
+df
+```
+<img width="750" height="411" alt="e3-10" src="https://github.com/user-attachments/assets/bb1ece98-9855-4eda-b2d2-3a0e482bcf14" />
+```
+df.skew()
+```
+<img width="750" height="411" alt="e3-10" src="https://github.com/user-attachments/assets/80a9428f-a3d4-4d83-bcd3-fdf0e605e53c" />
+
+```
+np.log(df["Highly Positive Skew"])
+```
+<img width="819" height="392" alt="e3-11" src="https://github.com/user-attachments/assets/f72adeed-2417-421f-b2d3-1f800f69f0ab" />
+
+```
+np.reciprocal(df["Moderate Positive Skew"])
+```
+<img width="510" height="177" alt="e3-12" src="https://github.com/user-attachments/assets/f6988fb2-b726-4201-84c9-4765c5eacf45" />
+```
+np.sqrt(df["Highly Positive Skew"])
+```
+<img width="508" height="216" alt="e3-13" src="https://github.com/user-attachments/assets/30c15e2a-f198-4387-b5b4-ce2654e9e7b6" />
+
+```
+np.square(df["Highly Positive Skew"])
+
+```
 
 
+<img width="553" height="221" alt="e3-14" src="https://github.com/user-attachments/assets/2ea18f4a-9d4f-4102-83e4-02f8fcb7bdfa" />
+```
+df["Highly Positive Skew_boxcox"], parameters=stats.boxcox(df["Highly Positive Skew"])
+df
+```
 
+<img width="541" height="220" alt="e3-15" src="https://github.com/user-attachments/assets/034ec085-6e1f-438a-ba82-7f90c2bc79b0" />
+```
+df["Moderate Negative Skew_yeojohnson"],parameters=stats.yeojohnson(df["Moderate Negative Skew"])
+```
 
+<img width="822" height="394" alt="e3-16" src="https://github.com/user-attachments/assets/e97af11f-bac7-4bfb-811a-2f03bb74d7e3" />
+```
+import seaborn as sns
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+sm.qqplot(df["Moderate Negative Skew"],line='45')
+plt.show()
+```
+<img width="815" height="410" alt="e3-17" src="https://github.com/user-attachments/assets/119b6f3f-dbde-4860-8ba3-e24164a7f73a" />
+
+```
+
+```
 # RESULT:
        # INCLUDE YOUR RESULT HERE
 
