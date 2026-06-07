@@ -37,54 +37,54 @@ We use this categorical data encoding technique when the features are nominal(do
         df
        ~~~
   <img width="650" height="446" alt="e-3 1" src="https://github.com/user-attachments/assets/a0f044b5-6c0c-4976-8c0b-3bd7f2a577d2" />
-  ~~~
+  ```
     from sklearn.preprocessing import LabelEncoder,OrdinalEncoder
     pm=['Hot','Warm','Cold']
     e1=OrdinalEncoder(categories=[pm])
     e1.fit_transform(df[["ord_2"]])
-~~~
+```
 <img width="650" height="446" alt="e-3 1" src="https://github.com/user-attachments/assets/75db711c-bf61-4071-bcbe-acdda2551264" />
-~~~
+```
 df['bo2']=e1.fit_transform(df[["ord_2"]])
 df
-~~~
+```
 <img width="650" height="446" alt="e-3 1" src="https://github.com/user-attachments/assets/58eded04-fc12-44a5-bfd8-f56b3b1318eb" />
-~~~
+```
 le=LabelEncoder()
 dfc=df.copy()
 dfc['ord_2']=le.fit_transform(dfc['ord_2'])
 dfc
-~~~
-~~~
+```
+```
     from sklearn.preprocessing import OneHotEncoder
 ohe=OneHotEncoder(sparse=False)
 df2=df.copy()
 enc=pd.DataFrame(ohe.fit_transform(df2[["nom_0"]]))
 df2=pd.concat([df2,enc],axis=1)
 df2
-~~~
+```
 <img width="521" height="348" alt="e3-4" src="https://github.com/user-attachments/assets/141f3f07-ac76-4c0e-97d4-d7d9ae1d03c1" />
-~~~
+```
 pd.get_dummies(df2,columns=["nom_0"])
-~~~
+```
 <img width="733" height="336" alt="e3-5" src="https://github.com/user-attachments/assets/0d759b7d-f89e-4868-a507-ba1a73228b18" />
-~~~
+```
 pip install --upgrade category_encoders
-~~~
+```
 <img width="824" height="254" alt="e3-6" src="https://github.com/user-attachments/assets/1c85845d-db54-4162-9797-b6692bd48f69" />
-~~~
+```
 from category_encoders import BinaryEncoder
 df=pd.read_csv("/content/data.csv")
 df
-~~~
+```
 <img width="670" height="407" alt="e3-7" src="https://github.com/user-attachments/assets/f94088d2-7b79-4fae-95c8-d643017881fb" />
-~~~
+```
 be=BinaryEncoder()
 nd=be.fit_transform(df['Ord_2'])
 dfb=pd.concat([df,nd],axis=1)
 dfb1=df.copy()
 dfb
-~~~
+```
 <img width="750" height="411" alt="e3-8" src="https://github.com/user-attachments/assets/adfddda9-5f4b-41b4-8192-afb12861769e" />
 ```
 from category_encoders import TargetEncoder
@@ -150,9 +150,26 @@ plt.show()
 <img width="815" height="410" alt="e3-17" src="https://github.com/user-attachments/assets/119b6f3f-dbde-4860-8ba3-e24164a7f73a" />
 
 ```
-
+import seaborn as sns
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+sm.qqplot(df["Moderate Negative Skew"],line='45')
+plt.show()
 ```
+<img width="613" height="438" alt="e3-18" src="https://github.com/user-attachments/assets/da627136-51a8-446f-afb9-197cfae63a43" />
+```
+sm.qqplot(np.reciprocal(df["Moderate Negative Skew_1"]),line='45')
+plt.show()
+```
+<img width="601" height="435" alt="e3-19" src="https://github.com/user-attachments/assets/50bd2444-e207-430b-bdf4-bef26238b29a" />
+```
+sm.qqplot(np.reciprocal(df["Moderate Negative Skew"]),line='45')
+plt.show()
+```
+<img width="633" height="434" alt="e3-20" src="https://github.com/user-attachments/assets/c3b89f0f-d7a6-4dde-9c3f-7808d952257e" />
+
+
 # RESULT:
-       # INCLUDE YOUR RESULT HERE
+      Thus the given data, Feature Encoding, Transformation process and save the data to a file was performed successfully.
 
        
